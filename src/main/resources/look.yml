@@ -1,0 +1,107 @@
+#Check out following page for more information: https://www.spigotmc.org/wiki/bossshoppro-itemdata/
+ArrowLeft:
+  MenuItem:
+  - type:ARROW
+  - amount:1
+  - name:&f&lPrevious
+  - 'lore:&7Go back to the previous page.'
+ArrowRight:
+  MenuItem:
+  - type:ARROW
+  - amount:1
+  - name:&f&lNext
+  - 'lore:&7Open the next page.'
+Back:
+  MenuItem:
+  - type:REDSTONE
+  - amount:1
+  - name:&cBack
+  - 'lore:&7Click to go back to the shop.'
+Close:
+  MenuItem:
+  - type:BARRIER
+  - amount:1
+  - name:&cClose
+  - 'lore:&7Click to close the menu.'
+CreateShop:  
+  MenuItem:
+  - type:CHEST
+  - name:&9&l&nCreate your own Shop
+  - 'lore1:&7Purchase &6%playershops_slots_creation% &7shop slots for &c%price%&7.'
+OwnShop:  
+  MenuItem:
+  - type:CHEST
+  - name:&9&l&nOwn Shop
+  - 'lore:&7Check out your own shop.'
+Renting:  
+  MenuItem:
+  - type:DIAMOND
+  - 'name:&9&l&nRent top spot'
+  - 'lore1:&7Rent a high shop listing slot for &c%price%'
+  - 'lore2:&7One rent will keep the spot for &6%playershops_renting_time%&7.'
+RentingIncrease:  
+  MenuItem:
+  - type:DIAMOND
+  - 'name:&9&l&nIncrease rent'
+  - 'lore1:&7You have purchased a top shop listing spot. Your rent will last for an other &6%playershops_renting_timeleft%&7.'
+  - 'lore2:&7Click to increase the duration by &6%playershops_renting_time% &7for &c%price%.'
+RentingLimitReached:  
+  MenuItem:
+  - type:BARRIER
+  - 'name:&9&l&nRent top spot'
+  - 'lore1:&cYou are not able to rent a high listing slot.'
+  - 'lore2:&cThere are no featured slots left to be rented at the moment.'
+EditShop:  
+  MenuItem:
+  - type:DIAMOND_PICKAXE
+  - name:&9&l&nEdit Shop
+  - 'lore1:&7Switch to edit mode.'
+  - 'lore3:&cOnly possible when no player is viewing your shop.'
+BuySlot:  
+  MenuItem:
+  - type:IRON_SPADE
+  - 'name:&9&l&nPurchase 3 additional slots'
+  - 'lore1:&7Your shop currently is &6%playershops_slots_current% slots &7big.'
+  - 'lore2:&7Click to increase your slots by &6%playershops_slots_increase% &7for &c%playershops_slots_price%.'
+ShopInfo:  
+  MenuItem:
+  - type:MAP
+  - name:&6&l&nShop Info
+  - 'lore1:&bRank: &6%playershops_rank_current%&7/&6%playershops_rank_max%'
+  - 'lore2:&bSlots available: &6%playershops_slots_current%&7/&6%playershops_slots_max%'
+  - 'lore3:&bMoney earned: &6%playershops_money% &7(Click to collect)'
+  - 'lore4:&bItems Sell worth: &6%playershops_worth%'
+  - 'lore5:&bTop listing spot rented for: &6%playershops_renting_timeleft%'
+  - 'lore7:&7You are able to edit your shop name when you have 18 slots or more.'
+ShopRename:  
+  MenuItem:
+  - type:NAME_TAG
+  - name:&9&l&nShop Rename
+  - 'lore1:&7Click to rename your shop.'
+SelectIcon:  
+  MenuItem:
+  - type:PLAYER_HEAD
+  - 'customskull:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODZmY2FlZmExOTY2OWQ4YmUwMmNmNWJhOWE3ZjJjZjZkMjdlNjM2NDEwNDk2ZmZjZmE2MmIwM2RjZWI5ZDM3OCJ9fX0=' 
+  - name:&9&l&nChange Icon
+  - 'lore1:&7Click to change the icon of your shop.'
+SelectInventoryItemAllow:  
+  MenuItem:
+  - type:PLAYER_HEAD
+  - 'customskull:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODZmY2FlZmExOTY2OWQ4YmUwMmNmNWJhOWE3ZjJjZjZkMjdlNjM2NDEwNDk2ZmZjZmE2MmIwM2RjZWI5ZDM3OCJ9fX0=' 
+  - name:&9&l&nInventory Item
+  - 'lore1:&7Click any item in your inventory in order to select it.'
+SelectInventoryItemDeny:  
+  MenuItem:
+  - type:PLAYER_HEAD
+  - 'customskull:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODZmY2FlZmExOTY2OWQ4YmUwMmNmNWJhOWE3ZjJjZjZkMjdlNjM2NDEwNDk2ZmZjZmE2MmIwM2RjZWI5ZDM3OCJ9fX0=' 
+  - name:&9&l&nInventory Item
+  - 'lore1:&7You may select items of your inventory when you have purchased more shop slots.'
+SaveShop:  
+  MenuItem:
+  - type:BOOK
+  - 'enchantment:UNBREAKING#1'
+  - itemflag:all
+  - name:&9&l&nSave Shop
+  - 'lore1:&7Save your shop.'
+  - 'lore3:&bWhile in &cEdit Mode &byou can add items from your inventory by clicking them.'
+  - 'lore5:&dMakes your shop public again.'

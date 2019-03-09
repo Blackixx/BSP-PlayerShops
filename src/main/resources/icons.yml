@@ -1,0 +1,239 @@
+#A list of available icons, starting with the highest one. If 'AllowIconSelection: false' and playerheads are disabled, shops will automatically pick the highest available icon here.
+#In the 'Icon' section of every item you can define its look using all possible BossShopPro item data. Besides you can specify permission and shop slots requirements.
+#Giving an item a custom name or lore will override the default ShopIcon look defined in the messages.yml file.
+List:
+  TNT:
+    Icon:
+    - type:TNT
+    - 'name:&4&l%playershopname%'
+    Permission: 'PlayerShops.Icon.TNT'
+    SlotsNeeded: 0
+  Obsidian:
+    Icon:
+    - type:OBSIDIAN
+    - 'name:&4&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 54
+  Diamondblock:
+    Icon:
+    - type:DIAMOND_BLOCK
+    - 'name:&1&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 48
+  Enchanted_Sword:
+    Icon:
+    - type:DIAMOND_SWORD
+    - 'enchantment:UNBREAKING#1'
+    - hideflags:all
+    - 'name:&1&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 48
+  Enchanted_Axe:
+    Icon:
+    - type:DIAMOND_AXE
+    - 'enchantment:UNBREAKING#1'
+    - hideflags:all
+    - 'name:&1&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 48
+  Enchanted_Pickaxe:
+    Icon:
+    - type:DIAMOND_PICKAXE
+    - 'enchantment:UNBREAKING#1'
+    - hideflags:all
+    - 'name:&1&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 48
+  Enchanted_Spade:
+    Icon:
+    - type:DIAMOND_SPADE
+    - 'enchantment:UNBREAKING#1'
+    - hideflags:all
+    - 'name:&1&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 48
+  Goldblock:
+    Icon:
+    - type:GOLD_BLOCK
+    - 'name:&6&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 42
+  Ironblock:
+    Icon:
+    - type:IRON_BLOCK
+    - 'name:&9&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 36
+  Bucket_Lava:
+    Icon:
+    - type:LAVA_BUCKET
+    - 'name:&9&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 36
+  Diamond:
+    Icon:
+    - type:DIAMOND
+    - 'name:&b&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 30
+  Diamond_Sword:
+    Icon:
+    - type:DIAMOND_SWORD
+    - itemflag:HIDE_ATTRIBUTES
+    - 'name:&b&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 30
+  Diamond_Pickaxe:
+    Icon:
+    - type:DIAMOND_PICKAXE
+    - itemflag:HIDE_ATTRIBUTES
+    - 'name:&b&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 30
+  Enchanted_Apple:
+    Icon:
+    - type:ENCHANTED_GOLDEN_APPLE
+    - 'name:&b&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 30
+  Gold:
+    Icon:
+    - type:GOLD_INGOT
+    - 'name:&e&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 24
+  Gold_Sword:
+    Icon:
+    - type:GOLD_SWORD
+    - itemflag:HIDE_ATTRIBUTES
+    - 'name:&e&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 24
+  Gold_Pickaxe:
+    Icon:
+    - type:GOLD_PICKAXE
+    - itemflag:HIDE_ATTRIBUTES
+    - 'name:&e&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 24
+  Golden_Apple:
+    Icon:
+    - type:GOLDEN_APPLE
+    - 'name:&e&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 24
+  Potion_Green:
+    Icon:
+    - type:POTION
+    - potion:JUMP#false#false
+    - itemflag:HIDE_POTION_EFFECTS
+    - 'name:&e&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 24
+  Potion_Purple:
+    Icon:
+    - type:POTION
+    - potion:INSTANT_DAMAGE#false#false
+    - itemflag:HIDE_POTION_EFFECTS
+    - 'name:&e&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 24
+  Iron:
+    Icon:
+    - type:IRON_INGOT
+    - 'name:&8&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 21
+  Iron_Sword:
+    Icon:
+    - type:IRON_SWORD
+    - itemflag:HIDE_ATTRIBUTES
+    - 'name:&8&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 21
+  Iron_Pickaxe:
+    Icon:
+    - type:IRON_PICKAXE
+    - itemflag:HIDE_ATTRIBUTES
+    - 'name:&8&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 21
+  Cooked_Beef:
+    Icon:
+    - type:COOKED_BEEF
+    - 'name:&8&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 21
+  Bucket_Water:
+    Icon:
+    - type:WATER_BUCKET
+    - 'name:&8&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 21
+  Coal:
+    Icon:
+    - type:COAL
+    - 'name:&8&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 18
+  Bucket:
+    Icon:
+    - type:BUCKET
+    - 'name:&8&l%playershopname%'
+    Permission: ''
+    SlotsNeeded: 18
+  Cobblestone:
+    Icon:
+    - type:COBBLESTONE
+    Permission: ''
+    SlotsNeeded: 15
+  Stone_Sword:
+    Icon:
+    - type:STONE_SWORD
+    - itemflag:HIDE_ATTRIBUTES
+    Permission: ''
+    SlotsNeeded: 15
+  Stone_Pickaxe:
+    Icon:
+    - type:STONE_PICKAXE
+    - itemflag:HIDE_ATTRIBUTES
+    Permission: ''
+    SlotsNeeded: 15
+  Raw_Beef:
+    Icon:
+    - type:RAW_BEEF
+    Permission: ''
+    SlotsNeeded: 15
+  Wood:
+    Icon:
+    - type:LOG
+    Permission: ''
+    SlotsNeeded: 12
+  Wooden_Sword:
+    Icon:
+    - type:WOOD_SWORD
+    - itemflag:HIDE_ATTRIBUTES
+    Permission: ''
+    SlotsNeeded: 12
+  Wooden_Pickaxe:
+    Icon:
+    - type:WOOD_PICKAXE
+    - itemflag:HIDE_ATTRIBUTES
+    Permission: ''
+    SlotsNeeded: 12
+  Apple:
+    Icon:
+    - type:APPLE
+    Permission: ''
+    SlotsNeeded: 12
+  Potion_Water:
+    Icon:
+    - type:POTION
+    - itemflag:HIDE_POTION_EFFECTS
+    Permission: ''
+    SlotsNeeded: 12
+  Dirt:
+    Icon:
+    - type:DIRT
+    Permission: ''
+    SlotsNeeded: 0

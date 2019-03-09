@@ -1,0 +1,150 @@
+v1.2.3
+* [NOTE] Requires Spigot 1.13.1 and above
+* [NOTE] Does not convert older shops to the new format
+* [UPDATE] Update for Spigot 1.13.*
+
+
+v1.2.2 (Needs BossShopPro v1.9.5 or higher)
+*[UPDATE] Updated to BossShopPro v1.9.5
+
+
+v1.2.1 (Needs BossShopPro v1.9.1 or higher)
+*[UPDATE] Updated to BossShopPro v1.9.1
+
+
+v1.2.0 (Needs BossShopPro v1.8.3 or higher)
+*[UPDATE] Updated to BossShopPro v1.8.3
+
+
+v1.1.8
+*[IMPROVE] Admin commands can now delete shops of offline players
+
+
+v1.1.7 (Needs BossShopPro v1.7.5 or higher)
+*[ADD] Added new admin command which allows saving the shop of a certain player and stopping edit mode of the shop
+*[IMPROVE] If permissions are enabled players now need the "PlayerShops.createSign.other" permission in order to create signs which link to shops of other players
+
+
+v1.1.6
+*[IMPROVE] Shop owners can now access their shop via sign while the shop is in edit-mode
+*[FIX] Small bugfix related to the "RemoveItemsOutOfStock" setting
+
+
+v1.1.5 (Needs BossShopPro v1.7.2 or higher)
+*[FIX] Small bugfix (PlayerShops was incompatible with some server software, for example KCauldron)
+
+
+v1.1.4 (Needs BossShopPro v1.7.0 or higher)
+*[UPDATE] Updated to BossShopPro v1.7.0
+
+
+v1.1.3 (Needs BossShopPro v1.6.8 or higher)
+*[UPDATE] Updated to BossShopPro v1.6.8
+
+
+v1.1.2
+*[ADD] Added option to grant players with given permissions additional shop slots
+
+
+v1.1.1
+*[ADD] Added an option which removes items which are out of stock completely from their shop
+*[IMPROVE] Now hiding items which are out of stock for visitors
+
+
+v1.1.0 (Needs BossShopPro v1.6.5 or higher)
+*[IMPROVE] Small improvements
+*[UPDATE] Updated to BossShopPro v1.6.5
+*[FIX] Shop icon name bug
+
+
+v1.0.7
+*[ADD] Added possibility to disable buttons by removing them/their content from the look.yml file
+*[ADD] Added option to prevent players in creative mode from adding items to their shop
+
+
+v1.0.6
+*[FIX] Always using default slot limit, not reading config value properly (due to one small typo)
+
+
+v1.0.5 (Needs BossShopPro v1.6.1 or higher)
+*[UPDATE] Updated to BossShopPro v1.6.1
+
+
+v1.0.4
+*[IMPROVE] Trimming price input strings (Now able to read numbers even if input contains spaces)
+
+
+v1.0.3
+*[IMPROVE] Improved sign layout (player names are line two now and support color codes)
+
+
+v1.0.2 (Requires BossShopPro v1.5.7)
+*[ADD] Added admin commands which allow deleting/creating shops
+
+
+v1.0.1
+*[UPDATE] Updated default configuration: Changed amount of some items from 0 to 1 in the "look.yml" file, because in 1.11 items with an amount of 0 are not shown anymore
+
+
+v1.0.0
+*[IMPROVE] Tiny improvements
+*[FIX] Rounded price numbers and cut off decimal places when loading shops
+
+
+v0.0.9
+*[FIX] Fixed two default config material names: Renamed from "WOODEN" to "WOOD"
+
+
+v0.0.8
+*[ADD] Added item amount information to the player purchase notifications (If already having a message set up, simply add the '%amount%' placeholder)
+*[ADD] Added shop worth placeholder (used in new default looks.yml, can manually be added using '%playershops_worth%')
+*[ADD] Added tons of new default icons
+*[IMPROVE] Added a help-line to the 'SaveShop' button
+*[IMPROVE] Improved shop behavior after server reload (Now detecting when owner is online and able to send him purchase-messages without needing the owner to re-join)
+*[FIX] Players unable to increase stock of their items when not having free slots left
+*[FIX] No longer showing "No Permission" message when players click empty slots/space while in the Icon selector
+*[FIX] Shop icon issue when players manually select an icon
+*[FIX] Moved shop icons to an external icons.yml file to prevent the configuration updater from re-adding deleted example icons
+
+
+v0.0.7
+*[FIX] Fixed shop icon name texts
+
+
+v0.0.6
+*[FIX] Not working without Spigot code (-> errors when using plain Bukkit)
+
+
+v0.0.5 (Requires BossShopPro v1.4.1)
+*[ADD] Added item blacklist
+*[IMPROVE] Made the feature which prevents special plugins items (like a server selector) from being sold optional because it might be incompatible with some poorly written plugins
+
+
+v0.0.4
+*[ADD] Added possibility for players to rename their shops (can be limited by permissions or shop slots needed)
+
+
+v0.0.3
+*[ADD] Added renting player limit
+*[ADD] Added option to disable rent-stacking
+*[IMPROVE] Improved default texts
+*[FIX] Icon placeholder showing wrong name if owner is offline
+*[FIX] Shops always showing configurable icons on first creation, even if playerheads are enabled
+
+
+v0.0.2
+*[ADD] Added rank info to shop info
+*[ADD] Added commands to directly open the shop of an other player
+*[ADD] Added sign support
+*[ADD] Added configurable price limits (minimum and maximum)
+*[IMPROVE] Improved message handling
+*[IMPROVE] Icons have different (configurable) text color now
+*[FIX] Error on player join before plugin was completely loaded
+
+
+v0.0.1
+* First release
+
+
+
+

@@ -1,0 +1,43 @@
+name: PlayerShops
+version: ${project.version}
+api-version: 1.13
+description: BossShopPro Addon - Allow your players to create public GUI shops
+author: Black_ixx
+website: http://felix.neuby.de
+main: org.black_ixx.bossshop.addon.playershops.PlayerShops
+depend: [BossShopPro]
+commands:
+  playershops:
+   description: Opens PlayerShops list
+   aliases: [playershop, ps]
+  playershopsadmin:
+   description: PlayerShops admin commands
+   aliases: [playershopadmin, psadmin]
+permissions:
+  PlayerShops.open:
+    description: Allows opening the playershops listing GUI
+    default: op
+  PlayerShops.create:
+    description: Allows creating an own PlayerShop
+    default: op
+  PlayerShops.rent:
+    description: Allows renting a better shop listing spot
+    default: op
+  PlayerShops.buySlot:
+    description: Allows purchasing additional shop slots
+    default: op
+  PlayerShops.selectIcon:
+    description: Allows selecting a shop icon
+    default: op
+  PlayerShops.createSign:
+    description: Allows creating a PlayerShops sign which links to the own shop
+    default: op
+  PlayerShops.createSign.other:
+    description: Allows creating PlayerShops signs which link to any player
+    default: op
+  PlayerShops.rename:
+    description: Allows players to rename their own shop
+    default: op
+  PlayerShops.admin:
+    description: Allows players to use PlayerShops admin commands
+    default: op

@@ -2,9 +2,12 @@ package org.black_ixx.bossshop.addon.playershops.objects;
 
 import java.util.UUID;
 
+import org.black_ixx.bossshop.BossShop;
+import org.black_ixx.bossshop.addon.playershops.PlayerShops;
 import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.managers.misc.InputReader;
 import org.black_ixx.bossshop.misc.userinput.BSUserInput;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +20,7 @@ public class PlayerShopsUserInputPrice extends BSUserInput {
     private UUID uuid;
     private ItemStack item;
     private int slot;
+    PlayerShops shops = PlayerShops.getPlugin(PlayerShops.class);
 
 
     public PlayerShopsUserInputPrice(PlayerShop shop, Player p, ItemStack item, int slot) {
@@ -27,7 +31,7 @@ public class PlayerShopsUserInputPrice extends BSUserInput {
     }
 
 
-    public void receivedInput(Player p, String text) {
+    public void receivedInput(final Player p, String text) {
         if (p.getUniqueId() == uuid) { //probably it is not even possible this event will trigger with an other player
 
             if (p.getInventory().getItem(slot) == null) {
@@ -44,26 +48,46 @@ public class PlayerShopsUserInputPrice extends BSUserInput {
             double worth = InputReader.getDouble(text, -1);
             if (worth == -1) {
                 ClassManager.manager.getMessageHandler().sendMessageDirect(ClassManager.manager.getStringManager().transform(shop.getPlugin().getMessages().get("Message.InvalidNumber").replace("%input%", text), p), p);
-                shop.getShopEdit().openInventory(p);
+                Bukkit.getScheduler().runTaskLater(shops, new Runnable() {
+                    @Override
+                    public void run() {
+                        shop.getShopEdit().openInventory(p);
+                    }
+                }, 1L);
                 return;
             }
 
             if (worth > shop.getPlugin().getSettings().getPriceMax()) {
                 ClassManager.manager.getMessageHandler().sendMessageDirect(ClassManager.manager.getStringManager().transform(shop.getPlugin().getMessages().get("Message.InvalidNumberHigh").replace("%input%", text), p), p);
-                shop.getShopEdit().openInventory(p);
+                Bukkit.getScheduler().runTaskLater(shops, new Runnable() {
+                    @Override
+                    public void run() {
+                        shop.getShopEdit().openInventory(p);
+                    }
+                }, 1L);
                 return;
             }
 
             if (worth < shop.getPlugin().getSettings().getPriceMin()) {
                 ClassManager.manager.getMessageHandler().sendMessageDirect(ClassManager.manager.getStringManager().transform(shop.getPlugin().getMessages().get("Message.InvalidNumberLow").replace("%input%", text), p), p);
-                shop.getShopEdit().openInventory(p);
+                Bukkit.getScheduler().runTaskLater(shops, new Runnable() {
+                    @Override
+                    public void run() {
+                        shop.getShopEdit().openInventory(p);
+                    }
+                }, 1L);
                 return;
             }
 
             p.getInventory().setItem(slot, null);
 
             shop.addItem(new PlayerShopItem(item, item.getAmount(), worth));
-            shop.getShopEdit().openInventory(p);
+            Bukkit.getScheduler().runTaskLater(shops, new Runnable() {
+                @Override
+                public void run() {
+                    shop.getShopEdit().openInventory(p);
+                }
+            }, 1L);
         }
     }
 

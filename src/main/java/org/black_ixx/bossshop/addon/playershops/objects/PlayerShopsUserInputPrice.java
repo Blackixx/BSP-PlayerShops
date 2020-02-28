@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.managers.misc.InputReader;
 import org.black_ixx.bossshop.misc.userinput.BSUserInput;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -44,27 +45,37 @@ public class PlayerShopsUserInputPrice extends BSUserInput {
             double worth = InputReader.getDouble(text, -1);
             if (worth == -1) {
                 ClassManager.manager.getMessageHandler().sendMessageDirect(ClassManager.manager.getStringManager().transform(shop.getPlugin().getMessages().get("Message.InvalidNumber").replace("%input%", text), p), p);
-                shop.getShopEdit().openInventory(p);
+                openInventorySync(p);
                 return;
             }
 
             if (worth > shop.getPlugin().getSettings().getPriceMax()) {
                 ClassManager.manager.getMessageHandler().sendMessageDirect(ClassManager.manager.getStringManager().transform(shop.getPlugin().getMessages().get("Message.InvalidNumberHigh").replace("%input%", text), p), p);
-                shop.getShopEdit().openInventory(p);
+                openInventorySync(p);
                 return;
             }
 
             if (worth < shop.getPlugin().getSettings().getPriceMin()) {
                 ClassManager.manager.getMessageHandler().sendMessageDirect(ClassManager.manager.getStringManager().transform(shop.getPlugin().getMessages().get("Message.InvalidNumberLow").replace("%input%", text), p), p);
-                shop.getShopEdit().openInventory(p);
+                openInventorySync(p);
                 return;
             }
 
             p.getInventory().setItem(slot, null);
 
             shop.addItem(new PlayerShopItem(item, item.getAmount(), worth));
-            shop.getShopEdit().openInventory(p);
+
+            openInventorySync(p);
         }
+    }
+
+    private void openInventorySync(final Player p) {
+        Bukkit.getScheduler().runTask(shop.getPlugin(), new Runnable() {
+            @Override
+            public void run() {
+                shop.getShopEdit().openInventory(p);
+            }
+        });
     }
 
 

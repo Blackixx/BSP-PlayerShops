@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>BSP-PlayerShops</groupId>
 	<artifactId>BSP-PlayerShops</artifactId>
-	<version>1.2.3</version>
+	<version>1.2.4</version>
 	<name>PlayerShops</name>
 	<build>
 		<finalName>BSP-PlayerShops</finalName>

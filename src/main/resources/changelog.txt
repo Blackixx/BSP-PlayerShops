@@ -1,3 +1,7 @@
+v1.2.4
+*[UPDATE] Updated to Spigot 1.15.2
+
+
 v1.2.3
 * [NOTE] Requires Spigot 1.13.1 and above
 * [NOTE] Does not convert older shops to the new format

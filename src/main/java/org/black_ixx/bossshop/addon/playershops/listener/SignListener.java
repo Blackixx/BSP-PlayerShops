@@ -75,19 +75,16 @@ public class SignListener implements Listener {
             if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
                 Block b = e.getClickedBlock();
-                if (b.getType() == Material.SIGN || b.getType() == Material.WALL_SIGN) {
+                if (b.getState() instanceof Sign) {
+                    Sign s = (Sign) b.getState();
 
-                    if (b.getState() instanceof Sign) {
-                        Sign s = (Sign) b.getState();
-
-                        String text = s.getLine(0).toLowerCase();
-                        if (text.endsWith(plugin.getSettings().getSignsTextPlayerShop().toLowerCase())) {
-                            plugin.getCommandManager().tryOpenShop(e.getPlayer(), ChatColor.stripColor(s.getLine(1)), true);
-                        } else if (text.endsWith(plugin.getSettings().getSignsTextShopListing().toLowerCase())) {
-                            plugin.getShopsManager().openShoplist(e.getPlayer());
-                        }
-
+                    String text = s.getLine(0).toLowerCase();
+                    if (text.endsWith(plugin.getSettings().getSignsTextPlayerShop().toLowerCase())) {
+                        plugin.getCommandManager().tryOpenShop(e.getPlayer(), ChatColor.stripColor(s.getLine(1)), true);
+                    } else if (text.endsWith(plugin.getSettings().getSignsTextShopListing().toLowerCase())) {
+                        plugin.getShopsManager().openShoplist(e.getPlayer());
                     }
+
                 }
             }
         }

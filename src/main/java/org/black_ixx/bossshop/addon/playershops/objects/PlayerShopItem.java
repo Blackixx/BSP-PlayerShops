@@ -184,10 +184,11 @@ public class PlayerShopItem {
         }
 
         List<String> list = meta.getLore();
-        if (has_lore) { //Separate new info lore and item lore
-            list.add(0, " ");
-            list.add(0, " ");
+        if(list == null) {
+            list = new ArrayList<String>();
         }
+        list.add(0, " ");
+        list.add(0, " ");
 
         list.add(0, plugin.getMessages().get("ItemEditPreview.Rest"));
         list.add(0, " ");

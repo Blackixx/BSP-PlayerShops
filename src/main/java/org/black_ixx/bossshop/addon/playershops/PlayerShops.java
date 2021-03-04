@@ -27,8 +27,6 @@ public class PlayerShops extends BossShopAddonConfigurable {
     private Settings settings;
     private ShopMenuItems items;
     private BSListener bslistener;
-    private PlayerListener playerlistener;
-    private SignListener signlistener;
     private CustomActions actions;
     private CommandManager commandmanager;
     private SaveManager savemanager;
@@ -43,9 +41,9 @@ public class PlayerShops extends BossShopAddonConfigurable {
         shopcreator = new ShopCreator();
         bslistener = new BSListener(this);
         Bukkit.getPluginManager().registerEvents(bslistener, this);
-        playerlistener = new PlayerListener(this);
+        PlayerListener playerlistener = new PlayerListener(this);
         Bukkit.getPluginManager().registerEvents(playerlistener, this);
-        signlistener = new SignListener(this);
+        SignListener signlistener = new SignListener(this);
         Bukkit.getPluginManager().registerEvents(signlistener, this);
         commandmanager = new CommandManager(this);
         getCommand("ps").setExecutor(commandmanager);
@@ -125,10 +123,6 @@ public class PlayerShops extends BossShopAddonConfigurable {
 
     public BSListener getBossShopListener() {
         return bslistener;
-    }
-
-    public SignListener getSignListener() {
-        return signlistener;
     }
 
     public CustomActions getActions() {

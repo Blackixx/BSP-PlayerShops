@@ -3,7 +3,6 @@ package org.black_ixx.bossshop.addon.playershops.listener;
 import org.black_ixx.bossshop.addon.playershops.PlayerShops;
 import org.black_ixx.bossshop.managers.ClassManager;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -20,7 +19,7 @@ public class SignListener implements Listener {
         this.plugin = plugin;
     }
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
 
     @EventHandler
@@ -38,23 +37,23 @@ public class SignListener implements Listener {
                 String line2 = ChatColor.stripColor(e.getLine(1));
                 Player p = e.getPlayer();
                 if (!p.hasPermission("PlayerShops.createSign")
-                        || (playershop & !line2.equalsIgnoreCase(p.getName()) & !p.hasPermission("PlayerShops.createSign.other"))) {
+                        || (playershop & !(line2 != null && line2.equalsIgnoreCase(p.getName())) & !p.hasPermission("PlayerShops.createSign.other"))) {
                     ClassManager.manager.getMessageHandler().sendMessage("Main.NoPermission", e.getPlayer());
                     e.setCancelled(true);
                     return;
                 }
             }
 
-            if (e.getLine(0) != "") {
+            if (!e.getLine(0).equals("")) {
                 e.setLine(0, ClassManager.manager.getStringManager().transform(e.getLine(0)));
             }
-            if (e.getLine(1) != "") {
+            if (!e.getLine(1).equals("")) {
                 e.setLine(1, ClassManager.manager.getStringManager().transform(e.getLine(1)));
             }
-            if (e.getLine(2) != "") {
+            if (!e.getLine(2).equals("")) {
                 e.setLine(2, ClassManager.manager.getStringManager().transform(e.getLine(2)));
             }
-            if (e.getLine(3) != "") {
+            if (!e.getLine(3).equals("")) {
                 e.setLine(3, ClassManager.manager.getStringManager().transform(e.getLine(3)));
             }
         }
@@ -75,7 +74,6 @@ public class SignListener implements Listener {
             if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
                 Block b = e.getClickedBlock();
-                if (b.getType() == Material.SIGN || b.getType() == Material.WALL_SIGN) {
 
                     if (b.getState() instanceof Sign) {
                         Sign s = (Sign) b.getState();
@@ -88,7 +86,6 @@ public class SignListener implements Listener {
                         }
 
                     }
-                }
             }
         }
     }

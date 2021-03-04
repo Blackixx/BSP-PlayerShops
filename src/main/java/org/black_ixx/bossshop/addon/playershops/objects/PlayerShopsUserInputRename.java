@@ -11,8 +11,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class PlayerShopsUserInputRename extends BSUserInput {
 
-    private PlayerShop shop;
-    private UUID uuid;
+    private final PlayerShop shop;
+    private final UUID uuid;
 
 
     public PlayerShopsUserInputRename(PlayerShop shop, Player p) {
@@ -33,6 +33,7 @@ public class PlayerShopsUserInputRename extends BSUserInput {
             ItemStack i = shop.getIcon();
             if (i != null && i.hasItemMeta()) {
                 ItemMeta meta = i.getItemMeta();
+                assert meta != null;
                 if (meta.hasDisplayName()) {
                     meta.setDisplayName(meta.getDisplayName().replace(shop.getShopDisplayName(), text));
                     i.setItemMeta(meta);

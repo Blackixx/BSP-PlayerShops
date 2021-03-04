@@ -1,12 +1,5 @@
 package org.black_ixx.bossshop.addon.playershops.managers;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import org.black_ixx.bossshop.addon.playershops.CustomActions;
 import org.black_ixx.bossshop.addon.playershops.PlayerShops;
 import org.black_ixx.bossshop.addon.playershops.managers.SaveManager.REASON_LOAD;
@@ -28,6 +21,9 @@ import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.managers.features.PageLayoutHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import java.io.File;
+import java.util.*;
 
 
 public class PlayerShopsManager {
@@ -53,7 +49,7 @@ public class PlayerShopsManager {
         shoplist = plugin.getShopCreator().createShopList(plugin, shophandler);
 
         //add player shops
-        playershops = new HashMap<UUID, PlayerShop>(); //TODO: LOAD
+        playershops = new HashMap<>(); //TODO: LOAD
         File shopfolder = new File(plugin.getBossShop().getDataFolder() + File.separator + "addons" + File.separator + plugin.getAddonName() + File.separator + "shops");
         if (shopfolder.exists()) {
             loadFile(plugin, shopfolder);
@@ -66,9 +62,9 @@ public class PlayerShopsManager {
 
     private void loadFile(PlayerShops plugin, File file) {
         if (file.isDirectory()) {
-            for (File f : file.listFiles()) {
-                loadFile(plugin, f);
-            }
+                for (File f : file.listFiles()) {
+                    loadFile(plugin, f);
+                }
         } else {
             UUID uuid = UUID.fromString(file.getName().replace(".yml", ""));
             if (!plugin.getSettings().getListOnlinePlayersOnly()) {
@@ -96,12 +92,10 @@ public class PlayerShopsManager {
             }
             storage.set("Renting", renting);
             storage.save();
+            if (reason == REASON_SAVE.SERVER_RELOAD || reason == REASON_SAVE.SERVER_UNLOAD) {
+                playershops.clear();
+            }
         }
-
-        if (reason == REASON_SAVE.SERVER_RELOAD || reason == REASON_SAVE.SERVER_UNLOAD) {
-            playershops.clear();
-        }
-
     }
 
 
@@ -170,7 +164,7 @@ public class PlayerShopsManager {
         synchronized (shoplist.getItems()) {
             shoplist.getItems().clear();
 
-            List<PlayerShop> to_add = new ArrayList<PlayerShop>();
+            List<PlayerShop> to_add = new ArrayList<>();
             synchronized (playershops.values()) {
                 for (PlayerShop shop : playershops.values()) {
                     if (shop.getShop() != null && shop.containsVisibleItems()) {
@@ -238,7 +232,7 @@ public class PlayerShopsManager {
 
         //Shopslist
         {
-            List<BSBuy> items = new ArrayList<BSBuy>();
+            List<BSBuy> items = new ArrayList<>();
             addItem(items, arrowleft);
             addItem(items, arrowright);
             addItem(items, close);
@@ -249,7 +243,7 @@ public class PlayerShopsManager {
 
         //Shop
         {
-            List<BSBuy> items = new ArrayList<BSBuy>();
+            List<BSBuy> items = new ArrayList<>();
             addItem(items, arrowleft);
             addItem(items, arrowright);
             addItem(items, plugin.getItems().getShopInfo().createShopItem(BSRewardType.Custom, BSPriceType.Nothing, new BSCustomLink(CustomActions.ACTION_SHOP_INFO, plugin.getActions()), null, 47, null, new BSSingleCondition(plugin.getBossShopListener().getPlayerShopCondition(), "own", "true")));
@@ -258,13 +252,13 @@ public class PlayerShopsManager {
                 addItem(items, plugin.getItems().getRentingIncrease().createShopItem(BSRewardType.Custom, plugin.getSettings().getPriceType(), new BSCustomLink(CustomActions.ACTION_RENT_INCREASE, plugin.getActions()), plugin.getSettings().getRentPrice(), 48, plugin.getSettings().getPermission("PlayerShops.rent"), new BSSingleCondition(plugin.getBossShopListener().getPlayerShopCondition(), "renting", "true")));
             }
 
-            List<BSCondition> conditions_rentlimit = new ArrayList<BSCondition>();
+            List<BSCondition> conditions_rentlimit = new ArrayList<>();
             conditions_rentlimit.add(new BSSingleCondition(plugin.getBossShopListener().getPlayerShopCondition(), "renting", "false"));
             conditions_rentlimit.add(new BSSingleCondition(plugin.getBossShopListener().getPlayerShopCondition(), "canrent", "false"));
             conditions_rentlimit.add(new BSSingleCondition(plugin.getBossShopListener().getPlayerShopCondition(), "own", "true"));
             addItem(items, plugin.getItems().getRentingLimitReached().createShopItem(BSRewardType.Nothing, BSPriceType.Nothing, null, null, 48, null, new BSConditionSet(conditions_rentlimit)));
 
-            List<BSCondition> conditions_rentfirst = new ArrayList<BSCondition>();
+            List<BSCondition> conditions_rentfirst = new ArrayList<>();
             conditions_rentfirst.add(new BSSingleCondition(plugin.getBossShopListener().getPlayerShopCondition(), "renting", "false"));
             conditions_rentfirst.add(new BSSingleCondition(plugin.getBossShopListener().getPlayerShopCondition(), "own", "true"));
             addItem(items, plugin.getItems().getRenting().createShopItem(BSRewardType.Custom, plugin.getSettings().getPriceType(), new BSCustomLink(CustomActions.ACTION_RENT_FIRST, plugin.getActions()), plugin.getSettings().getRentPrice(), 48, plugin.getSettings().getPermission("PlayerShops.rent"), new BSConditionSet(conditions_rentfirst)));
@@ -275,7 +269,7 @@ public class PlayerShopsManager {
 
         //Shopedit
         {
-            List<BSBuy> items = new ArrayList<BSBuy>();
+            List<BSBuy> items = new ArrayList<>();
             addItem(items, arrowleft);
             addItem(items, arrowright);
             addItem(items, plugin.getItems().getShopInfo().createShopItem(BSRewardType.Custom, BSPriceType.Nothing, new BSCustomLink(CustomActions.ACTION_SHOP_INFO, plugin.getActions()), null, 47, null));
@@ -293,7 +287,7 @@ public class PlayerShopsManager {
 
         //Iconselection
         {
-            List<BSBuy> items = new ArrayList<BSBuy>();
+            List<BSBuy> items = new ArrayList<>();
             addItem(items, arrowleft);
             addItem(items, arrowright);
             addItem(items, plugin.getItems().getSelectInventoryItemAllow().createShopItem(BSRewardType.Nothing, BSPriceType.Nothing, null, null, 48, null, new BSSingleCondition(plugin.getBossShopListener().getPlayerShopCondition(), "allowinventoryitem", "true")));

@@ -5,7 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class ShopMenuItems {
 
-    private ShopMenuItem
+    private final ShopMenuItem
             arrow_left,
             arrow_right,
             back,

@@ -29,10 +29,14 @@ import org.bukkit.inventory.ItemStack;
 
 public class BSListener implements Listener {
 
-    private PlayerShops plugin;
-    private BSConditionType playershop, playershopslots, playershopitem;
-    private BSRewardType rewardtypeshopitem, rewardtypeshopitemedit, rewardtypeshopicon;
-    private BSPriceType pricetypeshopcurrency;
+    private final PlayerShops plugin;
+    private final BSConditionType playershop;
+    private final BSConditionType playershopslots;
+    private final BSConditionType playershopitem;
+    private final BSRewardType rewardtypeshopitem;
+    private final BSRewardType rewardtypeshopitemedit;
+    private final BSRewardType rewardtypeshopicon;
+    private final BSPriceType pricetypeshopcurrency;
 
     public BSListener(PlayerShops plugin) {
         this.plugin = plugin;

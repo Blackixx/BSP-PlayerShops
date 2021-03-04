@@ -28,7 +28,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class PlayerListener implements Listener {
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
     public PlayerListener(PlayerShops plugin) {
         this.plugin = plugin;
@@ -56,7 +56,7 @@ public class PlayerListener implements Listener {
             if (plugin.getSettings().getListOnlinePlayersOnly() && plugin.getShopsManager().getPlayerShop(p.getUniqueId()) == null) {
                 File file = new File(plugin.getBossShop().getDataFolder() + File.separator + "addons" +
                         File.separator + plugin.getAddonName() + File.separator + "shops" + File.separator +
-                        p.getUniqueId().toString().substring(0, 1) + File.separator + p.getUniqueId().toString() +
+                        p.getUniqueId().toString().charAt(0) + File.separator + p.getUniqueId().toString() +
                         ".yml");
                 if (file.exists()) {
                     plugin.getSaveManager().loadShop(p.getUniqueId(), p, REASON_LOAD.OWNER_JOIN, false,
@@ -95,6 +95,7 @@ public class PlayerListener implements Listener {
                 if (plugin.getBossShop().getAPI().isValidShop(event.getInventory())) {
 
                     BSShopHolder holder = (BSShopHolder) event.getInventory().getHolder();
+                    assert holder != null;
                     BSBuy buy = holder.getShopItem(event.getRawSlot());
                     if (buy != null) {
                         return;
@@ -183,6 +184,7 @@ public class PlayerListener implements Listener {
                 if (plugin.getBossShop().getAPI().isValidShop(event.getInventory())) {
                     if (plugin.getShopsManager() != null) {
                         BSShopHolder holder = (BSShopHolder) event.getInventory().getHolder();
+                        assert holder != null;
                         PlayerShop shop = plugin.getShopsManager().getPlayerShop(holder.getShop(), false);
                         if (shop != null) {
                             shop.playerLeave(p);

@@ -1,10 +1,5 @@
 package org.black_ixx.bossshop.addon.playershops.objects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.black_ixx.bossshop.addon.playershops.PlayerShops;
 import org.black_ixx.bossshop.core.BSBuy;
 import org.black_ixx.bossshop.core.BSShop;
@@ -18,12 +13,17 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class PlayerShopItem {
 
 
-    private ItemStack item; //item
+    private final ItemStack item; //item
     private int amount; //amount
-    private double price_per_unit; //price
+    private final double price_per_unit; //price
     private int[] levels;
 
 
@@ -38,6 +38,7 @@ public class PlayerShopItem {
 
     public PlayerShopItem(ConfigurationSection section) {
         this.item = section.getItemStack("a");
+        assert this.item != null;
         this.item.setAmount(1);
         this.amount = section.getInt("b");
         this.price_per_unit = section.getDouble("c");
@@ -118,7 +119,7 @@ public class PlayerShopItem {
         //Actions
         Map<ClickType, ActionSet> actions = null;
         if (levels.length >= 2) {
-            actions = new HashMap<ClickType, ActionSet>();
+            actions = new HashMap<>();
             actions.put(ClickType.RIGHT, new ActionSet(plugin.getBossShopListener().getRewardTypeShopItem(), plugin.getBossShopListener().getPriceTypePlayerShopsCurrency(), create(levels[1]), levels[1] * price_per_unit, plugin.getMessages().get("ItemPreview.MessageRight"), null, null, null));
         }
         if (levels.length >= 3) {
@@ -135,16 +136,17 @@ public class PlayerShopItem {
         ItemMeta meta = item.getItemMeta();
 
 
+        assert meta != null;
         boolean has_lore = meta.hasLore();
-        if (!has_lore) {
-            meta.setLore(new ArrayList<String>());
-        }
-
-        List<String> list = meta.getLore();
+        List<String> list = new ArrayList<>();
         if (has_lore) { //Separate new info lore and item lore
+            list = meta.getLore();
             list.add(0, " ");
             list.add(0, " ");
         }
+        list.add(0, " ");
+        list.add(0, " ");
+
         if (levels.length == 1) {
             list.add(0, plugin.getMessages().get("ItemPreview.LoreAny"));
         } else {
@@ -173,30 +175,30 @@ public class PlayerShopItem {
 
     public BSBuy createShopItemEdit(PlayerShops plugin, String name, BSShop shop) {
         BSBuy buy = new BSBuy(plugin.getBossShopListener().getRewardTypeShopItemEdit(), BSPriceType.Nothing, create(1), null, null, -1, null, name, null, null, null);
-
-        ItemStack item = this.item.clone();
-        ItemMeta meta = item.getItemMeta();
-
-        boolean has_lore = meta.hasLore();
-        if (!has_lore) {
-            meta.setLore(new ArrayList<String>());
-        }
-
-        List<String> list = meta.getLore();
-        if (has_lore) { //Separate new info lore and item lore
+        //try {
+            ItemStack item = this.item.clone();
+            ItemMeta meta = item.getItemMeta();
+            List<String> list = new ArrayList<>();
+            assert meta != null;
+            if (meta.hasLore()) {
+                if (meta.getLore() != null) {
+                    list = meta.getLore();
+                    list.add(0, " ");
+                    list.add(0, " ");
+                }
+            }
+            list.add(0, plugin.getMessages().get("ItemEditPreview.Rest"));
             list.add(0, " ");
-            list.add(0, " ");
-        }
+            list.add(0, plugin.getMessages().get("ItemEditPreview.Amount"));
+            list.add(0, plugin.getMessages().get("ItemEditPreview.Price"));
+            meta.setLore(list);
+            item.setItemMeta(meta);
+            buy.setItem(item, false);
+            buy.setShop(shop);
 
-        list.add(0, plugin.getMessages().get("ItemEditPreview.Rest"));
-        list.add(0, " ");
-        list.add(0, plugin.getMessages().get("ItemEditPreview.Amount"));
-        list.add(0, plugin.getMessages().get("ItemEditPreview.Price"));
-
-        meta.setLore(list);
-        item.setItemMeta(meta);
-        buy.setItem(item, false);
-        buy.setShop(shop);
+        /*}catch(NullPointerException e){
+            e.printStackTrace();
+        }*/
         return buy;
     }
 }

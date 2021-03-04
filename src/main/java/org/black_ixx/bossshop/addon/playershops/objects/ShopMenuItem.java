@@ -15,10 +15,10 @@ import org.bukkit.inventory.ItemStack;
 public class ShopMenuItem {
 
 
-    private String path;
-    private String message;
+    private final String path;
+    private final String message;
     private ItemStack itemstack;
-    private List<String> itemdata;
+    private final List<String> itemdata;
 
 
     public ShopMenuItem(FileConfiguration config, String path) {
@@ -55,7 +55,7 @@ public class ShopMenuItem {
 
     public List<ItemStack> getItemList(int amount) {
         if (itemstack != null) {
-            ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+            ArrayList<ItemStack> list = new ArrayList<>();
             ItemStack item = itemstack.clone();
             item.setAmount(amount);
             list.add(item);

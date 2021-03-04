@@ -23,7 +23,7 @@ public class CustomActions implements BSCustomActions {
     public final static int ACTION_RENAME_SHOP = 9;
 
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
     public CustomActions(PlayerShops plugin) {
         this.plugin = plugin;
@@ -66,8 +66,10 @@ public class CustomActions implements BSCustomActions {
                     boolean shop_opened = false;
                     if (ClassManager.manager.getPlugin().getAPI().isValidShop(p.getOpenInventory())) {
                         BSShopHolder holder = ((BSShopHolder) p.getOpenInventory().getTopInventory().getHolder());
-                        if (holder.getShop().equals(shop.getShopEdit())) {
-                            shop_opened = true;
+                        if(holder != null) {
+                            if (holder.getShop().equals(shop.getShopEdit())) {
+                                shop_opened = true;
+                            }
                         }
                     }
                     shop.finishEdit(true);

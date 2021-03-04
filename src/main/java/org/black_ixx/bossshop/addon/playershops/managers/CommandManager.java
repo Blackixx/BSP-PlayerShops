@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 public class CommandManager implements CommandExecutor {
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
 
     public CommandManager(PlayerShops plugin) {

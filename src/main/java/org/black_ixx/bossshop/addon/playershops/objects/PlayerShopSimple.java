@@ -20,8 +20,8 @@ import com.google.common.io.Files;
 
 public class PlayerShopSimple extends BSAddonConfig {
 
-    private PlayerShops plugin;
-    private UUID owner;
+    private final PlayerShops plugin;
+    private final UUID owner;
     private String owner_name;
     private String shop_name;
     private double reward;
@@ -38,20 +38,20 @@ public class PlayerShopSimple extends BSAddonConfig {
 
 
     public PlayerShopSimple(PlayerShops plugin, Player owner) {
-        super(plugin, "shops" + File.separator + owner.getUniqueId().toString().substring(0, 1) + File.separator + owner.getUniqueId());
+        super(plugin, "shops" + File.separator + owner.getUniqueId().toString().charAt(0) + File.separator + owner.getUniqueId());
         this.plugin = plugin;
         this.owner = owner.getUniqueId();
         slots_amount = plugin.getSettings().getShopCreationSlots();
         rent_start = 0;
         rent_paid = 0;
         owner_name = owner.getName();
-        items = new ArrayList<PlayerShopItem>();
+        items = new ArrayList<>();
         setIcon(plugin.getIconManager().getHighestShopIconItem(owner, this, false), true, false, false);
         updatePriority(owner);
     }
 
     public PlayerShopSimple(PlayerShops plugin, UUID owner) {
-        super(plugin, "shops" + File.separator + owner.toString().substring(0, 1) + File.separator + owner);
+        super(plugin, "shops" + File.separator + owner.toString().charAt(0) + File.separator + owner);
         this.plugin = plugin;
         this.owner = owner;
         load();
@@ -74,7 +74,7 @@ public class PlayerShopSimple extends BSAddonConfig {
         priority = getInt("Priority", 0);
         shop_name = getString("ShopName", null);
         this.icon = getConfig().getItemStack("Icon");
-        items = new ArrayList<PlayerShopItem>();
+        items = new ArrayList<>();
         ConfigurationSection s = getConfig().getConfigurationSection("item");
         if (s != null) {
             for (String key : s.getKeys(false)) {
@@ -238,9 +238,7 @@ public class PlayerShopSimple extends BSAddonConfig {
             }
 
             //There is one other possible case: None of the shops paid rent (or rent does not matter at all)
-            if (this.slots_amount > current.slots_amount) {
-                return true;
-            }
+            return this.slots_amount > current.slots_amount;
 
 
         }
@@ -260,8 +258,7 @@ public class PlayerShopSimple extends BSAddonConfig {
                 period *= ((rent_paid / period_decrease) + (rent_paid % period_decrease == 0 ? 0 : 1));
             }
 
-            long time_left = period - time_so_far;
-            return time_left;
+            return period - time_so_far;
         }
 
         return -1; //Infinite time left

@@ -12,7 +12,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class MessageHandler {
-    private FileConfiguration config;
+    private final FileConfiguration config;
 
     public MessageHandler(final PlayerShops plugin, BSAddonConfig file) {
         config = file.getConfig();
@@ -38,7 +38,7 @@ public class MessageHandler {
     public void sendMessage(String node, CommandSender sender, String offline_target, Player target, BSShop shop, BSShopHolder holder, BSBuy item) {
         if (sender != null) {
 
-            if (node == null || node == "") {
+            if (node == null || node.equals("")) {
                 return;
             }
 

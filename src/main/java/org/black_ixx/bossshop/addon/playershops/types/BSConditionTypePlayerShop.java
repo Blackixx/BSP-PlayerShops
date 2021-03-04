@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 public class BSConditionTypePlayerShop extends BSConditionType {
 
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
     public BSConditionTypePlayerShop(PlayerShops plugin) {
         this.plugin = plugin;
@@ -39,7 +39,7 @@ public class BSConditionTypePlayerShop extends BSConditionType {
         if (conditiontype.equalsIgnoreCase("own")) {
             PlayerShop shop = plugin.getShopsManager().getPlayerShop(p.getUniqueId());
             if (shop == null) {
-                return InputReader.getBoolean(condition, true) == false;
+                return !InputReader.getBoolean(condition, true);
             }
             return InputReader.getBoolean(condition, true) == (shop.getShop() == holder.getShop());
         }
@@ -50,38 +50,38 @@ public class BSConditionTypePlayerShop extends BSConditionType {
         if (conditiontype.equalsIgnoreCase("renting")) {
             PlayerShop shop = plugin.getShopsManager().getPlayerShop(p.getUniqueId());
             if (shop == null) {
-                return InputReader.getBoolean(condition, true) == false;
+                return !InputReader.getBoolean(condition, true);
             }
             if (shop.getShop() != holder.getShop()) {
-                return InputReader.getBoolean(condition, true) == false;
+                return !InputReader.getBoolean(condition, true);
             }
             return InputReader.getBoolean(condition, true) == shop.getRentTimeLeft(false, true) > 0;
         }
         if (conditiontype.equalsIgnoreCase("rentingany")) {
             PlayerShop shop = plugin.getShopsManager().getPlayerShop(p.getUniqueId());
             if (shop == null) {
-                return InputReader.getBoolean(condition, true) == false;
+                return !InputReader.getBoolean(condition, true);
             }
             return InputReader.getBoolean(condition, true) == shop.getRentTimeLeft(false, true) > 0;
         }
         if (conditiontype.equalsIgnoreCase("canrent")) {
             int limit = plugin.getSettings().getRentPlayerLimit();
             if (limit == -1) {
-                return InputReader.getBoolean(condition, true) == true;
+                return InputReader.getBoolean(condition, true);
             }
             return InputReader.getBoolean(condition, true) == limit > plugin.getShopsManager().getRentingPlayersAmount();
         }
         if (conditiontype.equalsIgnoreCase("allowinventoryitem")) {
             PlayerShop shop = plugin.getShopsManager().getPlayerShop(p.getUniqueId());
             if (shop == null) {
-                return InputReader.getBoolean(condition, true) == false;
+                return !InputReader.getBoolean(condition, true);
             }
             return InputReader.getBoolean(condition, true) == plugin.getIconManager().getAllowInventoryItem(p, shop);
         }
         if (conditiontype.equalsIgnoreCase("allowshoprename")) {
             PlayerShop shop = plugin.getShopsManager().getPlayerShop(p.getUniqueId());
             if (shop == null) {
-                return InputReader.getBoolean(condition, true) == false;
+                return !InputReader.getBoolean(condition, true);
             }
             return InputReader.getBoolean(condition, true) == plugin.getIconManager().getAllowShopRename(p, shop) && shop.getCurrentShop() == holder.getShop();
         }

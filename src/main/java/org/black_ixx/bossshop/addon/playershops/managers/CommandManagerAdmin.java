@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 
 public class CommandManagerAdmin implements CommandExecutor {
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
 
     public CommandManagerAdmin(PlayerShops plugin) {
@@ -124,11 +124,10 @@ public class CommandManagerAdmin implements CommandExecutor {
                 plugin.getMessages().sendMessage("Admin.CommandInfoCreateShop", sender);
                 plugin.getMessages().sendMessage("Admin.CommandInfoDeleteShop", sender);
 
-                return false;
             } else {
                 ClassManager.manager.getMessageHandler().sendMessage("Main.NoPermission", sender);
-                return false;
             }
+            return false;
 
 
         }

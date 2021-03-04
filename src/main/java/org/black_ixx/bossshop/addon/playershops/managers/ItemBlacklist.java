@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ItemBlacklist {
 
-    private List<ItemStack> items;
+    private final List<ItemStack> items;
 
 
     public ItemBlacklist(FileConfiguration config) {

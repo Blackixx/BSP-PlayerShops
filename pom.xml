@@ -5,48 +5,70 @@
 	<artifactId>BSP-PlayerShops</artifactId>
 	<version>1.2.4</version>
 	<name>PlayerShops</name>
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<build>
-		<finalName>BSP-PlayerShops</finalName>
-		<resources>
-			<resource>
-				<targetPath>.</targetPath>
-				<filtering>true</filtering>
-				<directory>${basedir}/src/main/resources/</directory>
-				<includes>
-					<include>*.yml</include>
-				</includes>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.8.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.2.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 	<repositories>
 		<repository>
-			<id>spigot-repo</id>
+			<id>spigotmc-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>sonatype</id>
+			<url>https://oss.sonatype.org/content/groups/public/</url>
 		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.13.1-R0.1-SNAPSHOT</version>
+			<version>1.16.5-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.black_ixx</groupId>
+			<groupId>org.black_ixx.bossshop</groupId>
 			<artifactId>BossShopPro</artifactId>
-			<version>2.0.0</version>
-			<scope>provided</scope>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>/home/matteo/Documenti/MINECRAFT/SPIGOT PLUGIN/BossShopPro.jar</systemPath>
+
 		</dependency>
 	</dependencies>
 	<description>PlayerShops GUI is the most playerfriendly shop plugin.

@@ -59,8 +59,8 @@ public class PlayerShop extends PlayerShopSimple {
     @Override
     public void ownerJoin(Player p) {
         super.ownerJoin(p);
-        money_spent = new HashMap<UUID, Double>();
-        items_bought = new HashMap<UUID, Integer>();
+        money_spent = new HashMap<>();
+        items_bought = new HashMap<>();
     }
 
     @Override
@@ -126,7 +126,7 @@ public class PlayerShop extends PlayerShopSimple {
     }
 
     public long getEditDelayRemaining() {
-        return last_edit + getPlugin().getSettings().getEditDelay() * 1000 - System.currentTimeMillis();
+        return last_edit + getPlugin().getSettings().getEditDelay() * 1000L - System.currentTimeMillis();
     }
 
     public double getMoneySpentSoFar(Player p) {
@@ -272,7 +272,7 @@ public class PlayerShop extends PlayerShopSimple {
                     PlayerShopItem ps = getShopItem(i);
                     if (ps.getAmount() == 0) {
                         if (to_remove == null) {
-                            to_remove = new ArrayList<PlayerShopItem>();
+                            to_remove = new ArrayList<>();
                         }
                         to_remove.add(ps);
                     }

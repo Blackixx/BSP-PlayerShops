@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class SaveManager {
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
     public SaveManager(PlayerShops plugin) {
         this.plugin = plugin;
@@ -30,6 +30,7 @@ public class SaveManager {
                 shop = new PlayerShop(plugin, p);
                 break;
             case OWNER_JOIN:
+            case SERVER_START_RENTING:
                 shop = new PlayerShop(plugin, id);
                 break;
             case SERVER_START:
@@ -38,9 +39,6 @@ public class SaveManager {
                 if (owner != null) {
                     shop.ownerJoin(p);
                 }
-                break;
-            case SERVER_START_RENTING:
-                shop = new PlayerShop(plugin, id);
                 break;
             case SERVER_START_OWNER_ONLINE:
                 shop = new PlayerShop(plugin, id);
@@ -51,14 +49,12 @@ public class SaveManager {
         BossShop.debug("loaded shop of " + shop.getOwnerName() + " because of " + reason.name());
         plugin.getShopsManager().addPlayerShop(shop);
 
-        if (shop != null) {
-            shop.createShop();
-            if (updatelisting) {
-                plugin.getShopsManager().updateShopListing();
-            }
-            if (openshop) {
-                shop.getShop().openInventory(p);
-            }
+        shop.createShop();
+        if (updatelisting) {
+            plugin.getShopsManager().updateShopListing();
+        }
+        if (openshop) {
+            shop.getShop().openInventory(p);
         }
 
         return shop;
@@ -123,10 +119,10 @@ public class SaveManager {
         SERVER_UNLOAD(true),
         SERVER_RELOAD(false);
 
-        private boolean ownerquit;
+        private final boolean ownerquit;
 
 
-        private REASON_SAVE(boolean owner_quit) {
+        REASON_SAVE(boolean owner_quit) {
             this.ownerquit = owner_quit;
         }
 
@@ -142,10 +138,10 @@ public class SaveManager {
         SERVER_START_RENTING(false),
         SERVER_START_OWNER_ONLINE(true); //Reason of loading is onliner being online. Does not mean this is always called when owner is online and shop loaded.
 
-        private boolean ownerjoin;
+        private final boolean ownerjoin;
 
 
-        private REASON_LOAD(boolean owner_join) {
+        REASON_LOAD(boolean owner_join) {
             this.ownerjoin = owner_join;
         }
 

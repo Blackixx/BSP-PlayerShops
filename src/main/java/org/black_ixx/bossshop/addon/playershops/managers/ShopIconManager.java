@@ -11,6 +11,7 @@ import org.black_ixx.bossshop.addon.playershops.objects.PlayerShopSimple;
 import org.black_ixx.bossshop.core.BSBuy;
 import org.black_ixx.bossshop.core.BSShop;
 import org.black_ixx.bossshop.managers.ClassManager;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -21,11 +22,14 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 public class ShopIconManager {
 
-    private List<PlayerShopIcon> icons;
-    private boolean use_playerheads, allow_icon_selection;
+    private final List<PlayerShopIcon> icons;
+    private final boolean use_playerheads;
+    private final boolean allow_icon_selection;
     private BSShop iconselection;
 
-    private LimitedNode inventoryitem, rename, renamecolor;
+    private final LimitedNode inventoryitem;
+    private final LimitedNode rename;
+    private final LimitedNode renamecolor;
 
 
     public ShopIconManager(FileConfiguration config, FileConfiguration iconslist) {
@@ -35,7 +39,7 @@ public class ShopIconManager {
         rename = new LimitedNode(config.getConfigurationSection("ShopIcon.AllowShopRename"));
         renamecolor = new LimitedNode(config.getConfigurationSection("ShopIcon.ShopRenameAllowColors"));
 
-        icons = new ArrayList<PlayerShopIcon>();
+        icons = new ArrayList<>();
 
         for (String key : iconslist.getConfigurationSection("List").getKeys(false)) {
             PlayerShopIcon icon = new PlayerShopIcon(iconslist.getConfigurationSection("List." + key));
@@ -67,11 +71,7 @@ public class ShopIconManager {
         if (use_playerheads) {
             return true;
         }
-        if (!allow_icon_selection) {
-            return true;
-        }
-
-        return false;
+        return !allow_icon_selection;
     }
 
     public BSShop getIconSelectionShop() {
@@ -82,7 +82,8 @@ public class ShopIconManager {
     public ItemStack createPlayerheadItem(PlayerShopSimple shop) {
         ItemStack i = new ItemStack(Material.PLAYER_HEAD, 1);
         SkullMeta meta = (SkullMeta) i.getItemMeta();
-        meta.setOwner(shop.getOwnerName());
+        assert meta != null;
+        meta.setOwningPlayer(Bukkit.getPlayer(shop.getOwnerName()));
         i.setItemMeta(meta);
         return i;
     }
@@ -103,6 +104,7 @@ public class ShopIconManager {
         ItemMeta meta = i.getItemMeta();
 
 
+        assert meta != null;
         String title = meta.getDisplayName();
         if (title == null || use_default_text) {
             title = inventoryitem ? plugin.getMessages().get("ShopIcon.InventoryItemTitle") : plugin.getMessages().get("ShopIcon.DefaultTitle");
@@ -113,7 +115,7 @@ public class ShopIconManager {
         meta.setDisplayName(ClassManager.manager.getStringManager().transform(title));
 
         if (!meta.hasLore() || use_default_text) {
-            List<String> lore = new ArrayList<String>();
+            List<String> lore = new ArrayList<>();
             String desc = inventoryitem ? plugin.getMessages().get("ShopIcon.InventoryItemDescription") : plugin.getMessages().get("ShopIcon.DefaultDescription");
             if (shop != null) {
                 desc = desc.replace("%playershopname%", shop.getShopDisplayName());

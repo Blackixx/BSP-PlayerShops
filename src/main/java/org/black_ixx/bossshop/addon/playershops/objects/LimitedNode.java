@@ -5,8 +5,8 @@ import org.bukkit.entity.Player;
 
 public class LimitedNode {
 
-    private int slots;
-    private String perm;
+    private final int slots;
+    private final String perm;
 
     public LimitedNode(ConfigurationSection s) {
         slots = s.getInt("SlotsNeeded");
@@ -25,10 +25,7 @@ public class LimitedNode {
                 }
             }
         }
-        if (shop.getSlotsAmount(p, true) < slots) {
-            return false;
-        }
-        return true;
+        return shop.getSlotsAmount(p, true) >= slots;
     }
 
 }

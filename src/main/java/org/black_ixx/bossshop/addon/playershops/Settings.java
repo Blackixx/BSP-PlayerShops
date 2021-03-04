@@ -18,38 +18,43 @@ public class Settings {
 
 
     private BSPriceType pricetype;
-    private String pricetypeentry;
-    private boolean permissions;
+    private final String pricetypeentry;
+    private final boolean permissions;
 
-    private double creation_price;
-    private int creation_slots;
+    private final double creation_price;
+    private final int creation_slots;
 
-    private boolean slots_enabled;
-    private String slots_price;
-    private int slots_amount;
-    private int slots_limit;
-    private HashMap<String, Integer> slot_permissions;
-    private boolean slot_permissions_enabled;
-    private int editdelay;
+    private final boolean slots_enabled;
+    private final String slots_price;
+    private final int slots_amount;
+    private final int slots_limit;
+    private final HashMap<String, Integer> slot_permissions;
+    private final boolean slot_permissions_enabled;
+    private final int editdelay;
 
-    private List<String> ranking;
+    private final List<String> ranking;
 
-    private boolean rent_enabled, rent_sort_after_amount, rent_allow_stacking;
-    private double rent_price, rent_period_decrease;
-    private long rent_period;
-    private int rent_player_limit;
+    private final boolean rent_enabled;
+    private final boolean rent_sort_after_amount;
+    private final boolean rent_allow_stacking;
+    private final double rent_price;
+    private final double rent_period_decrease;
+    private final long rent_period;
+    private final int rent_player_limit;
 
-    private boolean listonlineplayersonly;
-    private double tax;
-    private double price_min, price_max;
+    private final boolean listonlineplayersonly;
+    private final double tax;
+    private final double price_min;
+    private final double price_max;
 
-    private String sound_player_purchased_from_you;
-    private String signs_shop_text, signs_listing_text;
-    private boolean signs_enabled;
+    private final String sound_player_purchased_from_you;
+    private final String signs_shop_text;
+    private final String signs_listing_text;
+    private final boolean signs_enabled;
 
-    private boolean prevent_selling_pluginitems;
-    private boolean prevent_creative_access;
-    private boolean remove_items_out_of_stock;
+    private final boolean prevent_selling_pluginitems;
+    private final boolean prevent_creative_access;
+    private final boolean remove_items_out_of_stock;
 
     public Settings(FileConfiguration config) {
         this.pricetypeentry = config.getString("PriceType");
@@ -62,9 +67,9 @@ public class Settings {
         this.slots_amount = InputReader.getInt(config.get("SlotPurchase.Amount"), 3);
         this.slots_limit = InputReader.getInt(config.get("SlotPurchase.TotalLimit"), 54);
         this.slot_permissions_enabled = config.getBoolean("SlotPermissions.Enabled");
-        this.slot_permissions = new HashMap<String, Integer>();
+        this.slot_permissions = new HashMap<>();
         for (String line : config.getStringList("SlotPermissions.List")) {
-            String parts[] = line.split(":");
+            String[] parts = line.split(":");
             slot_permissions.put(parts[0], InputReader.getInt(parts[1], 0));
         }
         this.editdelay = InputReader.getInt(config.get("ShopEditDelay"), 60);

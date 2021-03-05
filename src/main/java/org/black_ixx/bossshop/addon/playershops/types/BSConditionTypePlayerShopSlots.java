@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 public class BSConditionTypePlayerShopSlots extends BSConditionTypeNumber {
 
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
     public BSConditionTypePlayerShopSlots(PlayerShops plugin) {
         this.plugin = plugin;

@@ -3,12 +3,13 @@ package org.black_ixx.bossshop.addon.playershops.listener;
 import org.black_ixx.bossshop.addon.playershops.PlayerShops;
 import org.black_ixx.bossshop.addon.playershops.managers.SaveManager.REASON_SAVE;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldSaveEvent;
 
-public class WorldListener {
+public class WorldListener implements Listener {
 
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
     private long latest;
 
     public WorldListener(PlayerShops plugin) {

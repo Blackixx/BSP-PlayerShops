@@ -15,11 +15,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class PlayerShopIcon {
 
-    private String path;
-    private ItemStack item;
-    private List<String> itemdata;
-    private String permission;
-    private int slot_needed;
+    private final String path;
+    private final ItemStack item;
+    private final List<String> itemdata;
+    private final String permission;
+    private final int slot_needed;
 
 
     public PlayerShopIcon(ConfigurationSection section) {
@@ -42,11 +42,7 @@ public class PlayerShopIcon {
                 }
             }
         }
-        if (shop.getSlotsAmount(p, true) < slot_needed) {
-            return false;
-        }
-
-        return true;
+        return shop.getSlotsAmount(p, true) >= slot_needed;
     }
 
     public ItemStack getItem() {
@@ -73,7 +69,9 @@ public class PlayerShopIcon {
         ItemStack item = plugin.getIconManager().transformName(plugin, null, this.item.clone(), false, false);
 
         ItemMeta meta = item.getItemMeta();
+        assert meta != null;
         List<String> lore = meta.getLore();
+        assert lore != null;
         lore.add(plugin.getMessages().get("ShopIcon.RequiresSlots").replace("%slots%", String.valueOf(slot_needed)));
         meta.setLore(lore);
         item.setItemMeta(meta);

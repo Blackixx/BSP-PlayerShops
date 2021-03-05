@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class BSRewardTypePlayerShopItem extends BSRewardTypeItem {
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
     public BSRewardTypePlayerShopItem(PlayerShops plugin) {
         this.plugin = plugin;

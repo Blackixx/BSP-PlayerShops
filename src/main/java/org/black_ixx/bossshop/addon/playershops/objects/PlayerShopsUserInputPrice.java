@@ -14,10 +14,10 @@ import org.bukkit.inventory.ItemStack;
 public class PlayerShopsUserInputPrice extends BSUserInput {
 
 
-    private PlayerShop shop;
-    private UUID uuid;
-    private ItemStack item;
-    private int slot;
+    private final PlayerShop shop;
+    private final UUID uuid;
+    private final ItemStack item;
+    private final int slot;
 
 
     public PlayerShopsUserInputPrice(PlayerShop shop, Player p, ItemStack item, int slot) {
@@ -70,12 +70,7 @@ public class PlayerShopsUserInputPrice extends BSUserInput {
     }
 
     private void openInventorySync(final Player p) {
-        Bukkit.getScheduler().runTask(shop.getPlugin(), new Runnable() {
-            @Override
-            public void run() {
-                shop.getShopEdit().openInventory(p);
-            }
-        });
+        Bukkit.getScheduler().runTask(shop.getPlugin(), () -> shop.getShopEdit().openInventory(p));
     }
 
 

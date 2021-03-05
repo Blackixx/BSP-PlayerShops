@@ -14,7 +14,7 @@ import org.bukkit.event.inventory.ClickType;
 public class BSPriceTypePlayerShopCurrency extends BSPriceTypeNumber {
 
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
     public BSPriceTypePlayerShopCurrency(PlayerShops plugin) {
         this.plugin = plugin;

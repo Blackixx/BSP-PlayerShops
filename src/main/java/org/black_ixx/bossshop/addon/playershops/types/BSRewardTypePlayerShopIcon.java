@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class BSRewardTypePlayerShopIcon extends BSRewardTypeItem {
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
     public BSRewardTypePlayerShopIcon(PlayerShops plugin) {
         this.plugin = plugin;

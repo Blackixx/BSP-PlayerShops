@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 public class BSConditionTypePlayerShopItem extends BSConditionType {
 
 
-    private PlayerShops plugin;
+    private final PlayerShops plugin;
 
     public BSConditionTypePlayerShopItem(PlayerShops plugin) {
         this.plugin = plugin;
